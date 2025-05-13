@@ -1,6 +1,6 @@
 export const StatsSummary = () => {
   return (
-    <div className="grid grid-cols-4 gap-4 mb-8">
+    <div className="grid grid-cols-1 gap-4 mb-8 md:grid-cols-2 lg:grid-cols-4">
       <div className="bg-white rounded-lg p-6 shadow-sm">
         <h3 className="text-sm text-gray-500 mb-3">Open Contracts</h3>
         <div className="text-2xl font-semibold">3</div>
