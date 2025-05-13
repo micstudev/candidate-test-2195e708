@@ -15,7 +15,6 @@ import { getOptionClass } from "../../helpers/getOptionClass";
 import { useManageWebSocketLifecycle } from "../../hooks/useCleanupWebSocket";
 
 export const WorkStatusCard = ({ webSocket, className = "" }: { webSocket: WebSocket; className?: string }) => {
-  console.log("WebSocket in WorkStatusCard:", webSocket);
   const { profile } = useSelector((state: DashboardRootState) => state.user);
   const dispatch = useDispatch<DashboardDispatch>();
 
@@ -23,7 +22,6 @@ export const WorkStatusCard = ({ webSocket, className = "" }: { webSocket: WebSo
   useWebSocketListener(webSocket, dispatch, updateWorkStatus);
 
   const handleStatusChange = (newStatus: string) => {
-    // const newStatus = e.target.value as WorkStatus;
     const stateUpdateType = STATE_UPDATE_WORK_AVAILABILITY;
 
     dispatch(updateWorkStatus(newStatus as WorkStatus));

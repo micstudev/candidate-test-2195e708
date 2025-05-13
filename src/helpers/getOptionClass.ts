@@ -1,7 +1,6 @@
 import { WorkStatus } from "../shared/types";
 
 export const getOptionClass = (value: WorkStatus) => {
-  console.log("getOptionClass", value);
   switch (value) {
     case "looking":
       return "text-red-400";

@@ -8,7 +8,6 @@ import toast from "react-hot-toast";
  * It also logs the connection status to the console.
  */
 export const useManageWebSocketLifecycle = (webSocket: WebSocket | null) => {
-  console.log("useCleanupWebSocket called");
   if (!webSocket) {
     toast.error("Real-time updates are unavailable. Please refresh the page or try again later.");
     return;
@@ -21,7 +20,6 @@ export const useManageWebSocketLifecycle = (webSocket: WebSocket | null) => {
 
     // Clean up WebSocket connection on component unmount
     return () => {
-      console.log("Cleaning up WebSocket connection");
       webSocket.close();
     };
   }, []);

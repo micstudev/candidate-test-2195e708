@@ -10,12 +10,10 @@ export const useWebSocketListener = (
   updateAction: (payload: WorkStatus) => Action
 ) => {
   useEffect(() => {
-    console.log("Listening for WebSocket messages...");
     webSocket.onmessage = async (event: MessageEvent) => {
       const data = await parseWebSocketMessage(event);
 
       if (data.type === STATE_UPDATE_WORK_AVAILABILITY) {
-        console.log("Received state update:", data.payload);
         dispatch(updateAction(data.payload));
       }
     };
