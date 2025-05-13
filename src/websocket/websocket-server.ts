@@ -25,7 +25,9 @@ const handleRateLimiting = (webSocket: WebSocket) => {
   const clientData = clientMessageCounts.get(webSocket)!;
   clientData.count++;
 
-  if (clientData.count > RATE_LIMIT) {
+  const rateLimitExceeded = clientData.count > RATE_LIMIT;
+
+  if (rateLimitExceeded) {
     console.log("Rate limit exceeded, closing connection");
     webSocket.close(1011, "Rate limit exceeded"); // Close with 1011 internal error code
     return;
@@ -42,7 +44,9 @@ const handleRateLimiting = (webSocket: WebSocket) => {
 const sanitizeIncomingMessage = (message: string, webSocket: WebSocket) => {
   try {
     const parsedMessage = JSON.parse(message);
-    if (!parsedMessage.type || !parsedMessage.payload) {
+    const messageIsInvalid = !parsedMessage.type || !parsedMessage.payload;
+
+    if (messageIsInvalid) {
       throw new Error("Invalid message format");
     }
 
